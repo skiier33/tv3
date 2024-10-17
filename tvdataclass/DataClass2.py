@@ -23,18 +23,16 @@ TC = TestCandle(Interval.in_1_minute, n_bars=5000)
 interval = intervals[5]
 
 n_bars=n_dict[interval]
-
 color = colors_dict[interval]
 
 
 
-holdcandle = HoldCandle(Interval[interval], n_bars)
+holdcandle = HoldCandle(interval, n_bars)
 
 class TimeFrame(HoldCandle):
-    def __init__(self, holdcandle, color):
+    def __init__(self, holdcandle):
 
         self.candle = holdcandle
-        self.color = color
         self.untapped = None
         self.dict = None
         self.df = None

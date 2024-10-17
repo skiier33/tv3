@@ -226,6 +226,7 @@ class Untested(HoldCandle, TestCandle):
         #check is test is not in hold
         ix = ~self.hold.isin(self.test)
 
+
         ix = ix.loc[ix]
         print(f'Untested: {len(ix)} \n\n')
 
