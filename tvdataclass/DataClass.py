@@ -25,16 +25,16 @@ n_dict = dict(zip(intervals, mins))
 
 
 class HoldCandle:
-    #
-    # @classmethod
-    # def __getattr__(self, attr:str=None):
-    #     """
-    #     Get any attribute value
-    #     :param attr:Names of attribute (att of attribute)
-    #     :return: self.att
-    #     """
-    #
-    #     return getattr(self, attr)
+
+    @classmethod
+    def __getattr__(self, attr:str=None):
+        """
+        Get any attribute value
+        :param attr:Names of attribute (att of attribute)
+        :return: self.att
+        """
+
+        return getattr(self, attr)
 
     def __init__(self, interval, n_bars):
         """
@@ -178,30 +178,32 @@ class TestCandle:
 
 
 class Untested(HoldCandle, TestCandle):
-    @classmethod
-    def __getattr__(self, attr: str = None):
-        """
-        Get any attribute value
-        :param attr:Names of attribute (att of attribute)
-        :return: self.att
-        """
-
-        return getattr(self, attr)
+    """
+    will allow to get any properties from parent hold or test but must pass as args
+    """
 
     def __init__(self, holdcandle, testcandle, *args, **kwargs) -> object:
         """
         :param holdcandle:HoldCandle
         :param testcandle:TestCandle
+        :returns self.holdcandle = holdcandle
+                 self.testcandle = testcandle
+                 self.name_test
+                self.untested lonfs
+                 self.untested shorts
         """
-        self.holdcandle = holdcandle
-        self.testcandle = testcandle
+        self.holdcandle =holdcandle
+        self.testcandle =testcandle
+        self.name_test=self.testcandle.set_name()
         self.args = args
         self.kwargs = kwargs
 
         self.set_longs()
         self.set_shorts()
 
+    def get_test_name(self):
 
+        self.name_test =  self.testcandle.name
 
     def set_longs(self):
 
@@ -228,3 +230,9 @@ class Untested(HoldCandle, TestCandle):
         print(f'Untested: {len(ix)} \n\n')
 
         return self.hold.loc[ix]
+
+
+class UT2(Untested):
+
+    def __init__(self,**kwargs):
+        self.kwargs = kwargs
