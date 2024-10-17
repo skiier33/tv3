@@ -1,3 +1,5 @@
+from pickletools import long1
+
 import numpy as np
 import pandas as pd
 from tvDatafeed import TvDatafeed, Interval
@@ -23,16 +25,16 @@ n_dict = dict(zip(intervals, mins))
 
 
 class HoldCandle:
-
-    @classmethod
-    def __getattr__(self, attr:str=None):
-        """
-        Get any attribute value
-        :param attr:Names of attribute (att of attribute)
-        :return: self.att
-        """
-
-        return getattr(self, attr)
+    #
+    # @classmethod
+    # def __getattr__(self, attr:str=None):
+    #     """
+    #     Get any attribute value
+    #     :param attr:Names of attribute (att of attribute)
+    #     :return: self.att
+    #     """
+    #
+    #     return getattr(self, attr)
 
     def __init__(self, interval, n_bars):
         """
@@ -48,7 +50,6 @@ class HoldCandle:
         self.name = self.set_name()
 
         self.df = self.set_df()
-        self.df.name = 'df'
         self.get_hold_indexs()
         self.longs = self.get_longs()
         self.shorts= self.get_shorts()
@@ -91,94 +92,9 @@ class HoldCandle:
 
 
 
-class BasePlot(HoldCandle):
-
-    def __init__(self, interval, n_bars):
-        super().__init__(interval, n_bars)
-        self.long_hlines = self.get_hlines()
-        self.fig = self.plot_df()
 
 
-
-    def get_hlines(self)->pd.DataFrame:
-
-        long_hlines = pd.DataFrame(self.longs)
-        long_hlines['x1'] = self.df.index[-1]
-        long_hlines['y1'] = long_hlines[0]
-        long_hlines.index.name='x0'
-        long_hlines = long_hlines.reset_index()
-
-
-        return long_hlines.rename(columns={0:'y0'})
-
-
-
-    def plot_df(self):
-
-        fig = go.Figure(data=[go.Candlestick(x=self.df.index,
-                        open=self.df['open'], high=self.df['high'],
-                        low=self.df['low'], close=self.df['close'])], layout=go.Layout())
-
-        fig.update_layout(title=self.name, xaxis_rangeslider_visible=False, xaxis_title='Date', yaxis_title='Price', template="plotly_dark")
-
-        # fig.update_traces(name='fff',  selector = dict(type='candlestick'))
-
-        fig.update_traces(increasing_line_color= 'white', selector = dict(type='candlestick'))
-
-        fig.update_traces(decreasing_line_color= 'blue', selector = dict(type='candlestick'))
-
-        for row in self.long_hlines.index:
-           x0, y0, x1, y1 = self.long_hlines.loc[row].values
-           fig.add_shape(type='line', line=dict(color='red'), label=dict(text=y1, textposition='end', padding=0, font=dict(size=10), xanchor='right', yanchor='middle'), x0=x0, y0=y0, x1=x1, y1=y1)
-
-        return fig
-
-
-
-class PlotDf:
-
-    def __init__(self,df):
-        self.df = df
-        self.long_hlines = self.get_hlines()
-        self.fig = self.plot_df()
-
-        def get_hlines(self) -> pd.DataFrame:
-            long_hlines = pd.DataFrame(self.longs)
-            long_hlines['x1'] = self.df.index[-1]
-            long_hlines['y1'] = long_hlines[0]
-            long_hlines.index.name = 'x0'
-            long_hlines = long_hlines.reset_index()
-
-            return long_hlines.rename(columns={0: 'y0'})
-
-        def plot_df(self):
-            fig = go.Figure(data=[go.Candlestick(x=self.df.index,
-                                                 open=self.df['open'], high=self.df['high'],
-                                                 low=self.df['low'], close=self.df['close'])], layout=go.Layout())
-
-            fig.update_layout(title=self.name, xaxis_rangeslider_visible=False, xaxis_title='Date', yaxis_title='Price',
-                              template="plotly_dark")
-
-            # fig.update_traces(name='fff',  selector = dict(type='candlestick'))
-
-            fig.update_traces(increasing_line_color='white', selector=dict(type='candlestick'))
-
-            fig.update_traces(decreasing_line_color='blue', selector=dict(type='candlestick'))
-
-            for row in self.long_hlines.index:
-                x0, y0, x1, y1 = self.long_hlines.loc[row].values
-                fig.add_shape(type='line', line=dict(color='red'),
-                              label=dict(text=y1, textposition='end', padding=0, font=dict(size=10), xanchor='right',
-                                         yanchor='middle'), x0=x0, y0=y0, x1=x1, y1=y1)
-
-            return fig
-
-
-
-
-
-
-class TestCandle(HoldCandle):
+class TestCandle:
 
     def __init__(self, interval: Interval, n_bars: int) -> object:
         """
@@ -194,7 +110,15 @@ class TestCandle(HoldCandle):
         self.name = self.set_name()
         self.df = self.set_df()
         self.long_tester = self.get_long_tester()
+        self.long_tester.name = 'longs'
         self.short_tester = self.get_short_tester()
+        self.short_tester.name = 'shorts'
+
+    def set_name(self) -> str:
+        return str(self.interval).split('.in_')[-1]
+
+    def set_df(self) -> pd.DataFrame:
+        return tv.get_hist(symbol='BTCUSDT.P', exchange='zoomex', interval=self.interval, n_bars=self.n_bars)
 
     def get_long_tester(self) -> pd.DataFrame:
 
@@ -213,16 +137,32 @@ class TestCandle(HoldCandle):
         return tv.get_hist(symbol='BTCUSDT.P', exchange='zoomex', interval=self.interval, n_bars=self.n_bars)
 
 
+class Untested(HoldCandle, TestCandle):
 
+    def __init__(self, holdcandle, testcandle):
+        """
+        :param holdcandle:HoldCandle
+        :param testcandle:TestCandle
+        """
+        self.holdcandle = holdcandle
+        self.testcandle = testcandle
+        self.longs = self.test_hold(self.holdcandle.longs, self.testcandle.long_tester)
+        self.shorts = self.test_hold(self.holdcandle.shorts, self.testcandle.short_tester)
 
+    def test_hold(self, hold, test) -> pd.DataFrame:
+        """
+        Tests hold levels with another time frame
+        :return:Untested hold levels for test time
+        """
+        self.hold = hold
+        self.test = test
 
+        print(f'To Test: {len(self.hold)}')
 
+        ix = ~self.hold.isin(self.test)
 
-
-
-
-
-
+        ix = ix.loc[ix]
+        print(f'Untested: {len(ix)}')
 
 # class oldTester:
 #
