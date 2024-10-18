@@ -69,7 +69,7 @@ class HoldCandle:
 
 #####################################################################################
 
-class BasePlot(HoldCandle):
+class HoldPlotCandle(HoldCandle):
 
     def __init__(self, interval, n_bars):
         super().__init__(interval, n_bars)
@@ -85,7 +85,8 @@ class BasePlot(HoldCandle):
 
 
         return long_hlines.rename(columns={0:'y0'})
-    def plot_df(self):
+
+    def plot_df(self)->go.Figure:
 
         fig = go.Figure(data=[go.Candlestick(x=self.df.index, open=self.df['open'], high=self.df['high'], low=self.df['low'], close=self.df['close'])], layout=go.Layout())
         fig.update_layout(title=self.name, xaxis_rangeslider_visible=False, xaxis_title='Date', yaxis_title='Price', template="plotly_dark")
@@ -172,6 +173,7 @@ class Untested(HoldCandle, TestCandle):
     def set_shorts(self):
 
         self.untested_shorts = self.test_hold(self.holdcandle.shorts, self.testcandle.short_tester)
+
     def test_hold(self, hold, test) -> pd.DataFrame:
         """
         Tests hold levels with another time frame
