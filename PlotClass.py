@@ -1,10 +1,10 @@
 import plotly.graph_objects as go
 import pandas as pd
 
-from DataClass import HoldCandle, Untested
-
+1
 import plotly.graph_objects as go
 import pandas as pd
+from DataClass import HoldCandle
 
 
 

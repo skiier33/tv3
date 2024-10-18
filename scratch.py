@@ -1,13 +1,8 @@
-from pandas.core.window.doc import kwargs_scipy
-
-from DataClass import  TestCandle, HoldCandle , Untested, UT2
-from PlotClass import BasePlot , UntestedPlot
+from DataClass import  TestCandle, HoldCandle , Untested
+from PlotClass import UntestedPlot
 from tvDatafeed import Interval
-import plotly.graph_objects as go
-import pandas as pd
-import copy
 
-from tvdataclass.DataClass import intervals
+from DataClass import intervals
 
 INTERVALS = ['in_1_minute', 'in_3_minute', 'in_5_minute', 'in_15_minute', 'in_1_hour', 'in_4_hour', 'in_daily']
 COLORS = ['grey', 'pink', 'green', 'orange', 'blue', 'yellow', 'red']
@@ -23,16 +18,18 @@ TC = TestCandle(Interval.in_1_minute, n_bars=5000)
 interval = intervals[5]
 
 n_bars=n_dict[interval]
+
 color = colors_dict[interval]
 
 
 
-holdcandle = HoldCandle(interval, n_bars)
+holdcandle = HoldCandle(Interval[interval], n_bars)
 
 class TimeFrame(HoldCandle):
-    def __init__(self, holdcandle):
+    def __init__(self, holdcandle, color):
 
         self.candle = holdcandle
+        self.color = color
         self.untapped = None
         self.dict = None
         self.df = None
