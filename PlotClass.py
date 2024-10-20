@@ -52,16 +52,36 @@ class PlotCandle(HoldCandle):
             fig.add_shape(type='line', line=dict(color=color), label=dict(text=y1, textposition='end', padding=0, font=dict(size=10), xanchor='right', yanchor='middle'), x0=x0, y0=y0, x1=x1, y1=y1)
         return fig
 
-    # def plot_longs(self, fig):
-    #     fig = fig
-    #     color='green'
-    #
-    #     fig = self.add_lines(self.long_hlines, self.plot(), color)
-    #     # color='red'
-    #     # self.add_lines(self.short_hlines, fig, color)
-    #
-    #     return fig
+ ###################################################################################################################################################
+###################################################################################################################################################
 
 
+class Plot2(PlotCandle):
+    def __init__(self, holdcandle, testcandle, plot_kws=[], **kwargs):
+        super().__init__(holdcandle, testcandle)
+        self.plot_kws = plot_kws
 
+        for k in kwargs.keys():
+            self.__setattr__(k, kwargs[k])
+            self.plot_kws.append(k)
+
+        self.fig = self.plot()
+
+    def plot_longs(self):
+        self.add_lines(self.long_hlines, self.fig, color='green')
+
+    def plot_shorts(self):
+        self.add_lines(self.short_hlines, self.fig, color='red')
+
+    def plot_both(self):
+        self.plot_longs()
+        self.plot_shorts()
+
+    def modplot(self):
+        for kw in self.plot_kws:
+            print(kw, self.__dict__[kw])
+            self.fig.layout[kw] = self.__dict__[kw]
+
+
+    ###################################################################################################################################################
     ###################################################################################################################################################
