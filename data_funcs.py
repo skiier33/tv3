@@ -1,4 +1,7 @@
+
+
 import pandas as pd
+import plotly.graph_objects as go
 
 def parse_csv(file, nrows=100)->pd.DataFrame:
     file = file
@@ -9,6 +12,16 @@ def parse_csv(file, nrows=100)->pd.DataFrame:
 
     return df
 
+
+
+def plot(df, name=None)->go.Figure:
+    fig = go.Figure(data=[ go.Candlestick(x=df.index, open=df['open'], high=df['high'], low=df['low'], close=df['close'])], layout=go.Layout())
+    fig.update_layout(title=name, xaxis_rangeslider_visible=False, xaxis_title='Date', yaxis_title='Price', template="plotly_dark")
+    fig.update_layout(autosize=True, width=1600, height=600)
+    fig.update_traces(increasing_line_color='white', selector=dict(type='candlestick'))
+    fig.update_traces(decreasing_line_color='blue', selector=dict(type='candlestick'))
+
+    return fig
 #
 #
 # def get_hold_indexs(self) -> None:
