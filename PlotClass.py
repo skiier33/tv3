@@ -5,10 +5,7 @@ import pandas as pd
 from DataClass import HoldCandle
 
 
-class \
-
-
-        PlotCandle(HoldCandle):
+class PlotCandle(HoldCandle):
     """
     """
     def __init__(self, untested, hold_df, test_df, **kwargs):
