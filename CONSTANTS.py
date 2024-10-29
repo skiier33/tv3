@@ -3,7 +3,7 @@ import pathlib
 # from tvDatafeed import TvDatafeed
 import pandas as pd
 
-CSVS = pathlib.WindowsPath(r'C:/Users/akrug/PycharmProjects/pythonProject2/data').absolute()
+CSVS = pathlib.WindowsPath(r'C:/Users/akrug/PycharmProjects/pythonProject3/data').absolute()
 
 # username = 'Fook_Yew'
 # password = 'Tr4d1ng1sc00l'

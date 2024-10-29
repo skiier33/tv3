@@ -1,77 +1,115 @@
-
-
 import pandas as pd
+import ccxt
+import datetime
+import time
 import plotly.graph_objects as go
 import numpy as np
+import os
+import pathlib
+# from DataClass import TimeFrameData
 
+
+def update_data(csv_path:pathlib, timeframe):
+    os.chdir(csv_path)
+
+    old_data = read_binance_csv(csv_path)
+    since = old_data.index[-1]
+
+    new_data = get_data(since=since, timeframe=timeframe)
+    new_csv = pd.concat([old_data, new_data])
+    new_csv.to_csv(timeframe+'.csv')
 
 ######################################################################################################################
 
-def parse_csv(file)->pd.DataFrame:
-    df = pd.read_csv(file)
-    df.time = pd.to_datetime(df.time, unit='s')
-    df.index = df.time
+exchange = ccxt.binanceus()
+symbol = 'BTCUSDT'
+timeframe = '1m'
+limit = 1000
+# since = datetime.datetime(year=year, month=month, day=day, hour=1, minute=1, second=1)
+since = datetime.datetime(2022,1,1,1,1,1)
+
+def get_data(since:datetime.datetime,  timeframe:str, symbol='BTCUSDT', exchange=ccxt.binanceus(), limit:int=1000)->pd.DataFrame:
+    """
+    Get OHLC data for specified timeframe
+    :param:Start of data
+    :param timeframe: Candle interval
+    :param symbol: Binance.us symbol
+    :param exchange: Default Binance.us
+    :param limit: # of candles per request, Default 1000
+    :return:Dataframe of OHLC data
+    """
+    since = since.strftime("%Y-%m-%d %H:%M:%S")
+    since = exchange.parse8601(since)
+    timeframe = timeframe
+    symbol = symbol
+
+    all_data = []
+    while True:
+
+        data = exchange.fetch_ohlcv(symbol, timeframe, since, limit)
+        if not data:
+            break
+        all_data += data
+
+        first_date = datetime.datetime.utcfromtimestamp(data[0][0] // 1000).strftime("%Y-%m-%d %H:%M:%S")
+        last_date = datetime.datetime.utcfromtimestamp(data[-1][0] // 1000).strftime("%Y-%m-%d %H:%M:%S")
+        print(f"Fetched {len(data)} data points from {first_date} to {last_date}")
+        since = data[-1][0] + exchange.parse_timeframe(timeframe) * 1000
+        time.sleep(0.1)  # Add a small delay to avoid hitting rate limits
+
+    df = pd.DataFrame(all_data, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms', utc=True)
+    df.set_index('timestamp', inplace=True)
 
     return df
 
-
 ######################################################################################################################
 
+def read_binance_csv(file)->pd.DataFrame:
+    df = pd.read_csv(file)
+    df.timestamp = pd.to_datetime(df.timestamp, utc=True)
+    df.index = df.timestamp
+    df.drop(columns=['timestamp'], inplace=True)
+
+    return df
 ###########################################################
 
+def get_hlines(hold)->pd.DataFrame:
+    hlines = pd.DataFrame(hold)
+    hlines['x1'] = hlines.index[-1]
+    hlines['y1'] = hlines[0]
+    hlines.index.name='x0'
+    hlines = hlines.reset_index()
 
-def get_hold_ixs(df: pd.DataFrame) -> dict:
-
-    df['up_down'] = np.sign(df.close - df.open)
-    levels = dict(longs=dict(frontside=[], backside=[]),
-                  shorts=dict(frontside=[], backside=[]))
-
-    for time in df.index[:-4]:
-        sl = slice(time, time + 3 * (df.index[1] - df.index[0]))
-        chunk = df.loc[sl]
-
-        if all(chunk['up_down'] ==  [1, 1, -1, -1]):
-            levels['shorts']['backside'].append(chunk.index[0])
-            levels['shorts']['frontside'].append(chunk.index[1])
-
-        elif all(chunk['up_down'] ==  [-1,-1, 1, 1]):
-            levels['longs']['backside'].append(chunk.index[0])
-            levels['longs']['frontside'].append(chunk.index[1])
-
-    return levels
+    return hlines.rename(columns={0:'y0'})
 
 #####################################################################################
 
-# def get_hlines(self)->pd.DataFrame:
-#
-#     long_hlines = pd.DataFrame(self.longs)
-#     long_hlines['x1'] = self.df.index[-1]
-#     long_hlines['y1'] = long_hlines[0]
-#     long_hlines.index.name='x0'
-#     long_hlines = long_hlines.reset_index()
-#
-#     return long_hlines.rename(columns={0:'y0'})
-
-#####################################################################################
-
-
-def plot_df(self):
-    fig = go.Figure(data=[go.Candlestick(x=self.df.index, open=self.df['open'], high=self.df['high'], low=self.df['low'], close=self.df['close'])], layout=go.Layout())
-    fig.update_layout(title=self.name, xaxis_rangeslider_visible=False, xaxis_title='Date', yaxis_title='Price', template="plotly_dark")
+def plot_df(df):
+    fig = go.Figure(data=[go.Candlestick(x=df.index, open=df['open'], high=df['high'], low=df['low'], close=df['close'])], layout=go.Layout())
+    fig.update_layout(xaxis_rangeslider_visible=False, xaxis_title='Date', yaxis_title='Price', template="plotly_dark")
     fig.update_traces(increasing_line_color= 'white', selector = dict(type='candlestick'))
-    fig.update_traces(decreasing_line_color= 'orange', selector = dict(type='candlestick'))
-
-    # for row in self.long_hlines.index:
-    #     x0, y0, x1, y1 = self.long_hlines.loc[row].values
-    #     fig.add_shape(type='line', line=dict(color='red'), label=dict(text=y1, textposition='end', padding=0, font=dict(size=10),xanchor='right', yanchor='middle'), x0=x0, y0=y0, x1=x1, y1=y1)
+    fig.update_traces(decreasing_line_color= 'cyan', selector = dict(type='candlestick'))
 
     return fig
 
 
-def test_holds(holds:pd.Series, tests:pd.Series, func:bool, hold=None, longs=None, total=None) -> pd.DataFrame:
-  #  Test hold levels based on mask usually series.isin(test
+def add_hold_lines(fig, holds)->go.Figure:
 
-    mask = func
+    fig = fig
+
+    for row in holds.index:
+        x0, y0, x1, y1 = holds.loc[row].values
+        fig.add_shape(type='line', line=dict(color='red'), label=dict(text=y1, textposition='end', padding=0, font=dict(size=10),xanchor='right', yanchor='middle'), x0=x0, y0=y0, x1=x1, y1=y1)
+
+    return fig
+
+
+
+def test_holds(holds:pd.Series, tests:pd.Series) -> pd.DataFrame:
+  #  Test hold levels based on mask usually series.isin(test
+    total = len(holds)
+    mask = holds.isin(tests)
 
     ix_drop = holds[mask].index
     dropped = f'Drop: {len(ix_drop)} '
@@ -82,3 +120,47 @@ def test_holds(holds:pd.Series, tests:pd.Series, func:bool, hold=None, longs=Non
     return untested
 
 
+def add_timeframe(fig, df):
+    fig = fig
+    df=df
+    fig.add_trace(go.Candlestick(x=df.index, open=df['open'], high=df['high'], low=df['low'], close=df['close']))
+
+    return fig
+
+
+def test_long_hold(untested_hold, csv_folder):
+    '''
+    plug in untested longs or shorts to test with all lower timeframes
+    :param untested_hold:
+    :return: untested levels
+    '''
+    untested = untested_hold.longs
+
+    for tf in [ '15m.csv', '5m.csv', '3m.csv', '1m.csv']:
+        print(f' Testing with {tf}')
+
+    csv_path = csv_folder.join(tf)
+
+    test = read_binance_csv(csv_path)
+    test = test.loc[test.index > untested.index[0]]
+
+    untested = test_holds(untested, test.low)
+
+    return untested
+
+
+def test_short_hold(untested_hold):
+    '''
+    plug in untested longs or shorts to test with all lower timeframes
+    :param untested_hold:
+    :return: untested levels
+    '''
+    untested = untested_hold.shorts
+
+    for tf in ['15m.csv', '5m.csv', '3m.csv', '1m.csv']:
+        print('f Testing with {tf}')
+    test = TimeFrameData(read_binance_csv(p.joinpath(tf)))
+    test = test.loc[test.index > untested.index[0]]
+    untested = test_holds(untested, test.df.high)
+
+    return untested_shorts

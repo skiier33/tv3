@@ -9,23 +9,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19bd15c2-7b53-4f51-a149-81e633371e4f" name="Changes" comment="Deleted buynch if shit and added new funcion fuke">
-      <change afterPath="$PROJECT_DIR$/tester.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ttt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/ccxt_getdata.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/copy_ccxt_getdata.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_binance_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CONSTANTS.py" beforeDir="false" afterPath="$PROJECT_DIR$/CONSTANTS.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlotClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/PlotClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_funcs.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_funcs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test dataclass.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ttt.py" beforeDir="false" afterPath="$PROJECT_DIR$/ttt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileColors">
+    <fileColor scope="All Changed Files" color="Blue" />
+    <fileColor scope="Open Files" color="Green" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -106,6 +107,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.DataClass.executor": "Debug",
+    "Python.ccxt_getdata.executor": "Debug",
+    "Python.copy_ccxt_getdata.executor": "Debug",
+    "Python.get_binance_data.executor": "Debug",
     "Python.scratch.executor": "Debug",
     "Python.scrath5.executor": "Debug",
     "Python.test dataclass.executor": "Debug",
@@ -114,21 +118,22 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "full.screen.before.presentation.mode": "false",
-    "git-widget-placeholder": "aruglici-main-br",
+    "git-widget-placeholder": "aruglici-main-br2",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/akrug/PycharmProjects/pythonProject2/test dataclass.py",
+    "last_opened_file_path": "C:/Users/akrug/PycharmProjects/pythonProject3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.file-colors",
     "two.files.diff.last.used.file": "C:/Users/akrug/PycharmProjects/pythonProject2/test dataclass.py",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Jupyter",
       "Python"
     ]
   }
@@ -143,9 +148,12 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\akrug\PycharmProjects\pythonProject3" />
       <recent name="C:\Users\akrug\PycharmProjects\pythonProject2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\akrug\PycharmProjects\pythonProject3\data_2024" />
+      <recent name="C:\Users\akrug\PycharmProjects\pythonProject3" />
       <recent name="C:\Users\akrug\PycharmProjects\pythonProject2\data" />
       <recent name="C:\Users\akrug\PycharmProjects\pythonProject2" />
     </key>
@@ -186,29 +194,6 @@
       <option name="ADDITIONAL_ARGS" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="DataClass" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject2" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\akrug\PycharmProjects\pythonProject2\DataClass.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="holdplotter" />
       <option name="ENV_FILES" value="" />
@@ -232,8 +217,8 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="holdplotter" />
+    <configuration name="get_binance_data" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="pythonProject2" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -241,13 +226,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12" />
-      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="SDK_NAME" value="C:\Users\akrug\miniconda3" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\akrug\PycharmProjects\pythonProject3" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/get_binance_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -256,7 +241,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="scrath5" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="ttt" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject2" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -265,31 +250,9 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scrath5.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="ttt" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject2" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_NAME" value="C:\Users\akrug\miniconda3" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\akrug\PycharmProjects\pythonProject3" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -401,12 +364,13 @@
       <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.get_binance_data" />
+      <item itemvalue="Python.ttt" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.ttt" />
-        <item itemvalue="Python.scratch" />
-        <item itemvalue="Python.DataClass" />
-        <item itemvalue="Python.scrath5" />
       </list>
     </recent_temporary>
   </component>
@@ -446,6 +410,9 @@
       <workItem from="1729579215617" duration="13619000" />
       <workItem from="1729592976958" duration="31133000" />
       <workItem from="1729889633168" duration="6150000" />
+      <workItem from="1729906224207" duration="3624000" />
+      <workItem from="1729910866395" duration="294000" />
+      <workItem from="1729911167335" duration="49333000" />
     </task>
     <task id="LOCAL-00001" summary="variables">
       <option name="closed" value="true" />
@@ -548,7 +515,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="aruglici-main-br2" />
+                        <option value="origin/main-desktop" />
                       </list>
                     </value>
                   </entry>
@@ -582,58 +549,80 @@
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DataClass.py</url>
-          <line>29</line>
-          <option name="timeStamp" value="71" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py</url>
           <line>6</line>
           <option name="timeStamp" value="90" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ttt.py</url>
-          <line>29</line>
+          <line>28</line>
           <option name="timeStamp" value="91" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ccxt_getdata.py</url>
+          <line>44</line>
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ccxt_getdata.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/copy_ccxt_getdata.py</url>
+          <line>44</line>
+          <option name="timeStamp" value="110" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/get_binance_data.py</url>
+          <line>49</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/get_binance_data.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data_funcs.py</url>
+          <line>161</line>
+          <option name="timeStamp" value="167" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ttt.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="171" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="jupyter-line">
           <url>notebook://C:/Users/akrug/PycharmProjects/pythonProject2/DataClass.ipynb</url>
           <line>49</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+        <line-breakpoint suspend="THREAD" type="jupyter-line">
           <url>notebook://C:/Users/akrug/PycharmProjects/pythonProject2/tester.ipynb</url>
           <line>13</line>
           <option name="timeStamp" value="85" />
         </line-breakpoint>
       </breakpoints>
-      <default-breakpoints>
-        <breakpoint type="python-exception">
-          <properties notifyOnTerminate="true" exception="BaseException">
-            <option name="notifyOnTerminate" value="true" />
-          </properties>
-        </breakpoint>
-      </default-breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tester">
         <watch expression="chunk['up_down']" />
       </configuration>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/data_funcs.py" line="32">
-        <watch expression="chunk['up__down'].values" language="Python" />
-      </inline-watch>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/holdplotter$get_binance_data.coverage" NAME="get_binance_data Coverage Results" MODIFIED="1729928195249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\akrug\PycharmProjects\pythonProject3" />
+    <SUITE FILE_PATH="coverage/holdplotter$ttt.coverage" NAME="ttt Coverage Results" MODIFIED="1729963827394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\akrug\PycharmProjects\pythonProject3" />
+    <SUITE FILE_PATH="coverage/pythonProject2$CONSTANTS.coverage" NAME="CONSTANTS Coverage Results" MODIFIED="1729238893524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonProject2$DataClass.coverage" NAME="DataClass Coverage Results" MODIFIED="1729234150729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/holdplotter$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1729322825274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\akrug\PycharmProjects\pythonProject2" />
-    <SUITE FILE_PATH="coverage/holdplotter$scratch_1.coverage" NAME="scratch_1 Coverage Results" MODIFIED="1729450940416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\akrug\PycharmProjects\pythonProject2" />
     <SUITE FILE_PATH="coverage/pythonProject2$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1729244623412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/holdplotter$scratch_1.coverage" NAME="scratch_1 Coverage Results" MODIFIED="1729450940416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\akrug\PycharmProjects\pythonProject2" />
+    <SUITE FILE_PATH="coverage/holdplotter$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1729322825274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\akrug\PycharmProjects\pythonProject2" />
     <SUITE FILE_PATH="coverage/pythonProject2$PlotClass.coverage" NAME="PlotClass Coverage Results" MODIFIED="1729273422442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tvdataclass" />
     <SUITE FILE_PATH="coverage/holdplotter$scrath5.coverage" NAME="scrath5 Coverage Results" MODIFIED="1729578413794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/holdplotter$ccxt_getdata.coverage" NAME="ccxt_getdata Coverage Results" MODIFIED="1729924614337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\akrug\PycharmProjects\pythonProject3" />
     <SUITE FILE_PATH="coverage/pythonProject2$threeday.coverage" NAME="threeday Coverage Results" MODIFIED="1729232456353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/holdplotter$test_dataclass.coverage" NAME="DataClass Coverage Results" MODIFIED="1729740306004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/holdplotter$ttt.coverage" NAME="ttt Coverage Results" MODIFIED="1729897721268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/pythonProject2$CONSTANTS.coverage" NAME="CONSTANTS Coverage Results" MODIFIED="1729238893524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
